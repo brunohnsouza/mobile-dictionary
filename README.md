@@ -1,85 +1,105 @@
-# Mobile Challenge 20240202
+# Mobile Dictionary
 
-## Introdução
+Um aplicativo que permite listar, visualizar e gerenciar palavras em inglês, utilizando a [Free Dictionary API](https://dictionaryapi.dev/) como fonte de dados.
 
-Este é um teste para que possamos ver as suas habilidades como Mobile Developer.
+> This is a challenge by [Coodesh](https://coodesh.com/)
 
-Nesse desafio você deverá desenvolver um aplicativo para listar palavras em inglês, utilizando como base a API [Free Dictionary API](https://dictionaryapi.dev/). O projeto a ser desenvolvido por você tem como objetivo exibir termos em inglês e gerenciar as palavras visualizadas, conforme indicado nos casos de uso que estão logo abaixo.
+## Demonstração
 
-[SPOILER] As instruções de entrega e apresentação do challenge estão no final deste Readme (=
+### Parte I
 
-### Antes de começar
- 
-- Considere como deadline da avaliação a partir do início do teste. Caso tenha sido convidado a realizar o teste e não seja possível concluir dentro deste período, avise a pessoa que o convidou para receber instruções sobre o que fazer.
-- Documentar todo o processo de investigação para o desenvolvimento da atividade (README.md no seu repositório); os resultados destas tarefas são tão importantes do que o seu processo de pensamento e decisões à medida que as completa, por isso tente documentar e apresentar os seus hipóteses e decisões na medida do possível.
+### Parte II
 
-### Instruções iniciais obrigatórias
+## Índice 
 
-- Utilize as seguintes tecnologias:
+- [Casos de Uso](#casos-de-uso)
+- [Processo de Investigação](#processo-de-investigação)
+- [Funcionalidades](#funcionalidades)
+- [Tecnologias Usadas](#tecnologias-usadas)
+- [Instalação](#instalação)
 
-#### Tecnologias (Mobile):
-- Nativo ou Hibrido (Flutter, Ionic, React Native, etc)
-- Estilização (Material, Semantic, etc). Ou escrever o seu próprio sob medida 👌
-- Gestão de dados (Redux, Context API, IndexedDB, SQLite, etc)
+## Casos de Uso
 
-Atente-se, ao desenvolver a aplicação mobile, para conceitos de usabilidade e adeque a interface com elementos visuais para os usuários do seu sistema.
+O projeto foi desenvolvido com base nos seguintes casos de uso:
 
-#### Tecnologias (Back-End):
-- Firebase, Supabase, etc
+- **Como usuário, devo ser capaz de** visualizar uma lista de palavras com rolagem infinita.
+- **Como usuário, devo ser capaz de** visualizar uma palavra, seus significados e a fonética.
+- **Como usuário, devo ser capaz de** salvar uma palavra como favorito.
+- **Como usuário, devo ser capaz de** remover uma palavra dos favoritos.
+- **Como usuário, devo ser capaz de** visitar uma lista com as palavras que já vi anteriormente.
 
-#### Organização:
-- Aplicação de padrões Clean Code
-- Validação de chamadas assíncronas para evitar travamentos
+## Processo de Investigação
 
-### Modelo de Dados:
+### Hipóteses Iniciais
+- A API fornece uma exntensa lista de dados estruturados que pode gerar desafios na manipulação e exibição desses dados no aplicativo.
+- Penso em usar o `AsyncStorage` para armazenamento local no dispositivo do usuário, pois seu uso é simples e já atende aos requisitos.
 
-Conforme indicado na documentação da API, a API retorna as informações de uma palavra, tais como etimologia, sinônimos, exemplos de uso, etc. Utilize os campos indicados na documentação dos endpoints para obter os dados necessários.
- 
-### Front-End:
+### Pesquisa sobre a API
+- Endpoint utilizado: `/v1/entries/en/{word}`
+- O retorno inclui definições, exemplos e outras informações detalhadas. Decidi usar apenas os campos mencionados e demonstrados no wireframe.
 
-Nessa etapa você deverá desenvolver uma aplicação móvel nativa ou hibrida para consumir a API do desafio.
+### Decisões Técnicas
+- **Linguagem/Framework**: Escolhi React Native para o desenvolvimento pois tem a possiblidade de usar o poder da única base de código para gerar a aplicação para iOS e Android. Além disso, me permite usar conceitos e princípios que o React aplica, o que me permitirá reusar conceitos já conhecidos.
+- **Gerenciamento de Estado**: Usei React Context API para compartilhar o estado entre componentes. Optei por ela pois é uma solução já nativa da tecnologia, o que me permite concentrar minhas forças em outras frentes.
 
-**Obrigatório 1** - Você deverá atender aos seguintes casos de uso:
+## Funcionalidades
 
-- Como usuário, devo ser capaz de visualizar uma lista de palavras com rolagem infinita
-- Como usuário, devo ser capaz de visualizar uma palavra, significados e a fonética
-- Como usuário, devo ser capaz de salvar a palavra como favorito
-- Como usuário, devo ser capaz de remover a palavra como favorito
-- Como usuário, devo ser capaz de visitar uma lista com as palavras que já vi anteriormente
+1. Login e registro de novos usuários (Firebase Authentication)
+2. Efeitos de loading (UX)
+3. Rolagem infinita
+4. Visualizção da palavra, seu(s) significado(s), fonética e pronuncia
+5. Tocador de áudio para palavras que possuem a pronuncia (mp3) disponível
+6. Armazenamento local das palavras visitadas (histórico) e favoritadas
 
-A API não possui endpoint com a lista de palavras. Essa lista pode ser carregada em memória ou ser salva em banco de dados local ou remoto (por exemplo, com Firebase). Será necessário usar o [arquivo existente dentro do projeto no Github](https://github.com/dwyl/english-words/blob/master/words_dictionary.json).
+## Planejamento do Fluxo de Trabalho
 
-**Obrigatório 2** - Salvar em cache o resultado das requisições, para agilizar a resposta em caso de buscas com parâmetros repetidos.
+1. Configuração inicial do projeto.
+2. Criação de componentes auxiliares.
+3. Uso de uma lista fixa de dados (10 itens).
+4. Codificação com Expo Web.
+5. Reorganização do código para uso no Android.
+6. Integração com a API para buscar dados.
+7. Implementação da listagem de palavras.
+8. Armazenamento local das palavras visualizadas e favoritadas.
 
-**Obrigatório 3** - Seguir o wireframe para a página de listagem dos dados. Pode-se alterar a posição dos itens, mantendo as funcionalidades solicitadas.
+## Desafios e Soluções
+- **Problema**: Excesso de informações no retorno da API.
+  - **Solução**: Filtrei apenas os dados relevantes para o objetivo do projeto.
 
-<img src="./img/wireframe.png" width="100%" />
+## Tecnologias Usadas
 
-**Diferencial 1** - Implementar um tocador de audio utilizando, por exemplo, https://responsivevoice.org/api ou recursos nativos;
+- **Linguagem**: JavaScript
+- **Framework**: React Native
+- **Outras Tecnologias**: 
+  - React Navigation
+  - AsyncStorage
+  - Expo
+  - Firebase
+  - NativeWind
+  - TypeScript
+  - Prettier e ESLint
 
-**Diferencial 2** - Utilizar alguma ferramenta de Injeção de Dependência;
+## Instalação
 
-**Diferencial 3** - Escrever Unit Tests ou E2E Test. Escolher a melhor abordagem e biblioteca;
+Siga as etapas abaixo para configurar e instalar o Mobile Dictionary em seu ambiente local:
 
-**Diferencial 4** - Implementar login com usuário e senha e associar os favoritos e histórico ao ID do usuário, salvando essa informação em banco de dados local ou remoto
-## Readme do Repositório
+1. Clone o repositório e acesse o diretório:
 
-- Deve conter o título do projeto
-- Uma descrição sobre o projeto em frase
-- Deve conter uma lista com linguagem, framework e/ou tecnologias usadas
-- Como instalar e usar o projeto (instruções)
-- Não esqueça o [.gitignore](https://www.toptal.com/developers/gitignore)
-- Se está usando github pessoal, referencie que é um challenge by coodesh:  
+```bash
+git clone git@github.com:brunohnsouza/mobile-dictionary.git
+cd mobile-dictionary
+```
 
->  This is a challenge by [Coodesh](https://coodesh.com/)
+2. Instale as dependências do projeto:
 
-## Finalização e Instruções para a Apresentação
+```bash
+npm install
+```
 
-1. Adicione o link do repositório com a sua solução no teste
-2. Adicione o link da apresentação do seu projeto no README.md.
-3. Verifique se o Readme está bom e faça o commit final em seu repositório;
-4. Envie e aguarde as instruções para seguir. Sucesso e boa sorte. =)
+3. Inicie o servidor em modo de desenvolvimento:
 
-## Suporte
+```bash
+npx expo start
+```
 
-Use a [nossa comunidade](https://discord.gg/rdXbEvjsWu) para tirar dúvidas sobre o processo ou envie uma mensagem diretamente a um especialista no chat da plataforma. 
+Após iniciar o projeto, use o app `Expo Go` para escanear o QR Code presente no terminal ou pressione a tecla `w` para abrir seu projeto na web.
