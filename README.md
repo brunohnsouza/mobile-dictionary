@@ -8,7 +8,11 @@ Um aplicativo que permite listar, visualizar e gerenciar palavras em inglês, ut
 
 ### Parte I
 
+https://github.com/user-attachments/assets/a5087965-b59a-4a48-bdd1-76b48c6b2b11
+
 ### Parte II
+
+https://github.com/user-attachments/assets/7208c7c6-e022-4a50-b04a-7406efa1f0ee
 
 ## Índice 
 
